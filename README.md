@@ -10,7 +10,14 @@ Web Link : https://pallavinama.github.io/HW-Week4-Weather-Dashboard/
 Web Browser
 
 # Usage/Walkthrough Steps
-1) 
+1) User will launch the application and Enter the city
+2) User clicks on search icon
+3) system will display current weather stats for that city
+4) System should present the next 5 day forecast weather for that city
+5) System should let the user to select/enter another city
+6) System will present the latest entered city weather
+7) System will display the history pane of all the user search criteria.
+8) System should let the user to select the city from the history pane and display data accordingly.
 
 # Built with
 Javascript - Programming Language
@@ -29,5 +36,4 @@ https://code.jquery.com/
 
 https://openweathermap.org/api
 
-fonts.googleapis.com
 
