@@ -5,7 +5,7 @@ $(document).ready(function() {
     var searchBtn = $("#searchBtn");
 
     function getCurrent(city) {
-        var queryURL = "http://api.openweathermap.org/data/2.5/weather?q="+city+",USA"+"&APPID=b3aed4fd9f6da379f1b4e453f38c089f";
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+city+",USA"+"&APPID=b3aed4fd9f6da379f1b4e453f38c089f";
         $.ajax({
             url: queryURL,
             method: "GET",
@@ -40,7 +40,7 @@ $(document).ready(function() {
     
             
             cardRow.append(textDiv);
-            getForecast(response.id);
+           
         });
     }    
 
