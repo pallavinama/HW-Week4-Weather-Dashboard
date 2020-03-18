@@ -62,7 +62,7 @@ $(document).ready(function() {
                     var newCol = $("<div>").attr("class", "col-sm");
                     newrow.append(newCol);
 
-                    newCol.append($("<p>").html("Date: "+moment(response.list[i].dt, "X").format("MMM Do")));
+                    newCol.append($("<p>").html("Date: "+moment(response.list[i].dt, "X").format("MMM Do, YYYY")));
                     newCol.append($("<p>").html("Temp: "+response.list[i].main.temp+" &#8457"));
                     newCol.append($("<p>").html("Humidity: "+response.list[i].main.humidity+"%"));
                 }
