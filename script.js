@@ -1,19 +1,17 @@
 $(document).ready(function() {
-
-    
-    var currentCity;
+    // var currentCity;
     var searchBtn = $("#searchBtn");
 
     function getCurrent(city) {
-        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+city+",USA"+"&APPID=b3aed4fd9f6da379f1b4e453f38c089f";
+        var apiURL = "https://api.openweathermap.org/data/2.5/weather?q="+city+",USA"+"&units=imperial&APPID=b3aed4fd9f6da379f1b4e453f38c089f";
         $.ajax({
-            url: queryURL,
+            url: apiURL,
             method: "GET",
-            error: function (){
-                console.log("Testing Error");
-            }
+            // error: function (){
+            //     console.log("Testing Error");
+            // }
         }).then(function (response) {
-            //create the card
+            //Creating the card for Current City Statistics
             var currCard = $("<div>").attr("class", "card bg-light");
             $("#locationWeather").append(currCard);
     
@@ -26,31 +24,58 @@ $(document).ready(function() {
             var textDiv = $("<div>").attr("class", "col-md-8");
             var cardBody = $("<div>").attr("class", "card-body");
             textDiv.append(cardBody);
-            //display city name
+            //Displaying city name
             cardBody.append($("<h3>").attr("class", "card-title").text(response.name));
-            //display last updated
-            //var currdate = moment(response.dt, "X").format("dddd, MMMM Do YYYY, h:mm a");
-            //cardBody.append($("<p>").attr("class", "card-text").append($("<small>").attr("class", "text-muted").text("Last updated: " + currdate)));
-            //display Temperature
+            //Displaying current date
+            var currentDate = moment().format('MMMM Do, YYYY');
+            cardBody.append($("<p>").attr("class", "card-text").html("Current Date: " + currentDate));
+            // Temperature Display
             cardBody.append($("<p>").attr("class", "card-text").html("Temperature: " + response.main.temp + " &#8457;"));
-            //display Humidity
+            //Humidity Display
             cardBody.append($("<p>").attr("class", "card-text").text("Humidity: " + response.main.humidity + "%"));
-            //display Wind Speed
+            //Wind Speed Display
             cardBody.append($("<p>").attr("class", "card-text").text("Wind Speed: " + response.wind.speed + " MPH"));
-    
-            
             cardRow.append(textDiv);
            
         });
-    }    
+    }   
+    
+    // Function to get 5 Day Weather Forecast
 
-    // Code for Onclick Operation on SearchBtn
+    function get5Day(city) {
+        console.log("inside get5Day");
+        
+        var apiURL = "https://api.openweathermap.org/data/2.5/forecast?q="+city+",USA"+"&units=imperial&APPID=b3aed4fd9f6da379f1b4e453f38c089f";
+        $.ajax({
+            url: apiURL,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
+            //add container div for forecast cards
+            var newrow = $("<div>").attr("class", "row");
+            $("#locationWeather").append(newrow);
+            //newrow.append($("<p>").html("5 Day Forecast"));
+    
+            //loop through array response to find the forecasts for 9:00
+            for (var i = 0; i < response.list.length; i++) {
+                if (response.list[i].dt_txt.indexOf("9:00:00") !== -1) {
+                    var newCol = $("<div>").attr("class", "col-sm");
+                    newrow.append(newCol);
 
+                    newCol.append($("<p>").html("Date: "+moment(response.list[i].dt, "X").format("MMM Do")));
+                    newCol.append($("<p>").html("Temp: "+response.list[i].main.temp+" &#8457"));
+                    newCol.append($("<p>").html("Humidity: "+response.list[i].main.humidity+"%"));
+                }
+            }
+        });
+    }
+        
     searchBtn.on("click", function() {
         var city = $("#searchInput").val().trim();
         if (city != ""){
+            $("#locationWeather").empty();
             getCurrent(city);
-           
+            get5Day(city);
           }
       });  
   });
