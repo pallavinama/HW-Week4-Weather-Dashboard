@@ -1,19 +1,56 @@
-<!DOCTYPE html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    </head>
-    <body>
-        <nav class="navbar navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">
-                <class="header">Weather Dashboard</a>
-        </nav>
-        
-        <script src="./script.js"></script>
-    </body>
+s<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Weather Dashboard</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <class="header">Weather Dashboard
+        </a>
+    </nav>
+
+    <!-- // New changes -->
+
+
+    <div class="container-fluid">
+        <div class="row mt-3">
+            <div class="col-md-3 searcharea">
+                <h2 class="text-secondary">Search for a city:</h2>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="searchInput" type="search" aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" id="searchBtn" type="submit">
+                            <i class="material-icons">search</i>
+                        </button>
+                    </div>
+                </div>
+                <div class="mt-5" id="PastSearchCriteria">
+                    <!--Section/Buttons for past Criteria-->
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="container" id="locationWeather">
+                    <!--Weather for current/Latest location-->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="./script.js"></script>
+</body>
+
 </html>
